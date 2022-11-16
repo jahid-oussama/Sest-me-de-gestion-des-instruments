@@ -53,6 +53,7 @@
         </div>
       </header>
                         <!-- nav bar  -->
+                       
 
                         <!-- side bar  -->
 
@@ -108,7 +109,16 @@
 
 
     <section class="h-100 gradient-custom">
+                          <!-- add button -->
         <div class="container py-5">
+          <div class="d-flex align-items-end ">
+            <div class="ms-auto">
+                <a href="#modal-task" onclick="clear_task()" data-bs-toggle="modal" class="btn btn-success btn-rounded px-4 rounded-pill"><i class="fa fa-plus fa-lg me-2 ms-n2 text-success-900"></i> Add Task</a>
+            </div>
+        </div>
+                          <!-- add button -->
+
+                          
           <div class="row d-flex justify-content-center my-4 ">
             <div class="col-lg-4 col-md-6 col-sm-6 ">
               <div class="card mb-4">
