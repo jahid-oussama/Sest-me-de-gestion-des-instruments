@@ -48,7 +48,7 @@ $percussions = getProducts(3);
         <div class="dropdown text-end">
           <a href="#" class="d-block text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://media-exp1.licdn.com/dms/image/D5603AQFHWU_JzXonGw/profile-displayphoto-shrink_200_200/0/1667834285999?e=1673481600&v=beta&t=3OgKdFNpM9YiLj1ItrrtGM50ItAlIBcfNeNoUao_eH8" alt="mdo" width="32" height="32" class="rounded-circle">
-            <span class="d-none d-sm-inline mx-1 text-white">jahid oussama</span>
+            <span class="d-none d-sm-inline mx-1 text-white"> <?php echo $_SESSION["name"] ?></span>
           </a>
           <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
             <li><a class="dropdown-item" href="#">Profile</a></li>
@@ -56,14 +56,13 @@ $percussions = getProducts(3);
             <li>
               <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
           </ul>
         </div>
       </div>
     </div>
   </header>
   <!-- nav bar  -->
-
 
   <!-- side bar  -->
 

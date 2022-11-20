@@ -14,6 +14,9 @@ session_start();
 if (isset($_POST['save']))        saveproduct();
 if (isset($_POST['delete']))      deleteProduct();
 if (isset($_POST['update']))      updateProduct();
+if (isset($_POST["submit_signup"]))  signUp();
+if (isset($_POST["submit_signin"]))  singIn();
+if (isset($_POST["submit_signout"]))  singOut();
 
 
 function getProducts($cat)
@@ -139,23 +142,62 @@ function updateProduct()
 function signUp()
 {
     global $conn;
-    if (insset($_POST["submit_signup"])) {
-        $name = $_POST["name"];
-        $userName = $_POST["username"];
-        $email = $_POST["email"];
-        $password = $_POST["password"];
-        $confirmPassword = $_POST["confirmpassword"];
-        $duplicate = mysqli_query($conn, "SELECT * from tb_user WHERE username = '$userName' OR email = '$email'");
-        if (mysqli_num_rows($duplicate) > 0) {
-            echo "<script> alert('username or email has already taken ') </script>";
+    $name = $_POST["name"];
+    $userName = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $confirmPassword = $_POST["confirmpassword"];
+    $duplicate = mysqli_query($conn, "SELECT * from tb_user WHERE username = '$userName' OR email = '$email'");
+    if (mysqli_num_rows($duplicate) > 0) {
+        echo "<script> alert('username or email has already taken ') </script>";
+    } else {
+        if ($password == $confirmPassword) {
+            $query = "INSERT INTO tb_user VALUES('','$name', '$userName','$email', '$password')";
+            mysqli_query($conn, $query);
+            echo
+            "<script> alert('registretion Successul'); </script>";
         } else {
-            if ($password == $confirmPassword) {
-                $query = "INSERT INTO tb_user VALUES('','$name', '$userName','$email', '$password')";
-                mysqli_query($con, $query);
-            }
+            echo
+            "<script> alert('Passeword Does not Match'); </script>";
         }
     }
 }
+
+function singIn()
+{
+
+    global $conn;
+
+    $usernameemail = $_POST["usernameemail"];
+    $password = $_POST["password"];
+    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE username = '$usernameemail' OR email = '$usernameemail'");
+    $row = mysqli_fetch_assoc($result);
+
+    if (mysqli_num_rows($result) > 0) {
+        if ($password == $row["password"]) {
+            $_SESSION["login"] = true;
+            $_SESSION["id"] = $row["id"];
+            $_SESSION["name"] = $row["name"];
+
+            header('location: index.php');
+        } else {
+            echo "<script> alert('Wrong Password'); </script>";
+        }
+    } else {
+        echo
+        "<script> alert('User Not Registered'); </script>";
+    }
+}
+
+// function singOut()
+// {
+
+//     global $conn;
+
+//     session_unset();
+//     session_destroy();
+//     header('location: first.php');
+// }
 
 // if (isset($_POST['submitt'])) {
 //     $file = $_FILES['file'];
