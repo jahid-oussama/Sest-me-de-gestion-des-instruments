@@ -1,6 +1,9 @@
 <?php
 include 'script.php';
 
+if (!empty($_SESSION["id"])) {
+  header('location: index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -25,16 +28,17 @@ include 'script.php';
   <title>Document</title>
 </head>
 
-<body>
+<body style="   background-image: url('https://wallpaperset.com/w/full/5/3/8/9809.jpg');
+    background-attachment: fixed; background-repeat: no-repeat; background-size: cover;">
   <!-- back ground image -->
-  <style>
+  <!-- <style>
     body {
       background-image: url('image/pngegg.png');
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-position: center;
     }
-  </style>
+  </style> -->
   <!-- back ground image -->
   <!-- nav bar image -->
   <header class="p-3 text-bg-dark d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">

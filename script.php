@@ -16,7 +16,7 @@ if (isset($_POST['delete']))      deleteProduct();
 if (isset($_POST['update']))      updateProduct();
 if (isset($_POST["submit_signup"]))  signUp();
 if (isset($_POST["submit_signin"]))  singIn();
-if (isset($_POST["submit_signout"]))  singOut();
+
 
 
 function getProducts($cat)
@@ -161,6 +161,7 @@ function signUp()
             "<script> alert('Passeword Does not Match'); </script>";
         }
     }
+    header('location: first.php');
 }
 
 function singIn()
@@ -189,15 +190,45 @@ function singIn()
     }
 }
 
-// function singOut()
-// {
+function out()
+{
 
-//     global $conn;
+    global $conn;
 
-//     session_unset();
-//     session_destroy();
-//     header('location: first.php');
-// }
+    $id = $_SESSION["id"];
+    $result = mysqli_query($conn, "SELECT * FROM tb_user WHERE id = '$id'");
+    $row = mysqli_fetch_assoc($result);
+
+
+    header('location: first.php');
+}
+function countProduct()
+{
+
+    global $conn;
+
+    $id = $_SESSION["id"];
+    $result = mysqli_query($conn, "SELECT COUNT(id) FROM `products`;");
+    $row = mysqli_fetch_assoc($result);
+
+
+    return $row['COUNT(id)'];
+}
+
+function countAdmin()
+{
+
+    global $conn;
+
+    $id = $_SESSION["id"];
+    $result = mysqli_query($conn, "SELECT COUNT(id) FROM `tb_user`;");
+    $row = mysqli_fetch_assoc($result);
+
+
+    return $row['COUNT(id)'];
+}
+
+
 
 // if (isset($_POST['submitt'])) {
 //     $file = $_FILES['file'];
