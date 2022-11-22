@@ -43,7 +43,6 @@ function clear_product() {
 
 
 
-
 // $(document).ready(function(){
 //     $(document).click(function(e){
 //         if(!$(e.target).is("#exampleModal")){
